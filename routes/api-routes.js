@@ -51,11 +51,40 @@ module.exports = function(app) {
       });
     }
   });
-  app.get("/api/notes", function(req, res){
-    db.Notes.findAll().then(function(dbNotes){
-      res.json(dbNotes)
-      console.log(dbNotes)
-    })
+  // app.get("/api/contact", function(req, res){
+  //   db.Contact.findAll().then(function(dbContact){
+  //     res.json(dbContact)
+  //     console.log(dbContact)
+  //   })
+  // });
 
-  })
+    // DELETE route for deleting posts
+    // app.delete("/api/notes/:id", function(req, res) {
+    //   db.Post.destroy({
+    //     where: {
+    //       id: req.params.id
+    //     }
+    //   })
+    //     .then(function(dbPost) {
+    //       res.json(dbPost);
+    //     });
+    // });
+    // PUT route for updating posts
+  //   app.put("/api/notes", function(req, res) {
+  //     db.Post.update(req.body,
+  //       {
+  //         where: {
+  //           id: req.body.id
+  //         }
+  //       })
+  //       .then(function(dbPost) {
+  //         res.json(dbPost);
+  //       });
+  //   });
+  // };
+
+
+
+
+
 };
