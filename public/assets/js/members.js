@@ -5,23 +5,47 @@ $(document).ready(function() {
     $(".member-name").text(data.email);
   });
   $.get("api/notes").then(function(data){
-    console.log(data[0])
-    console.log(data[0].body)
-    console.log("length:" + data.length)
-    // const noteArray = []
-    // for(i=0; i < (data.length+1); i++){
-    //   let title = data[i].title
-    //   let body = data[i].body
-    //   noteArray.push(title, body)
-
-    // }
-    // console.log(noteArray)
+   
     $(".title").text(data[0].title)
   })
 
     $(".noteEdit").on("click", function(event){
         console.log("button Works")
     })
+
+
+    $(".search-button").on("click", function(event){
+      event.preventDefault();
+      deleteNote(this.value)
+      location.reload()
+
+      
+      
+      
+    })
+// edit button
+    $(".btn-default").on("click", function(event){
+      event.preventDefault();
+      window.location.href= "/addNote?id=" + this.value
+    })
+
+
+    // This function does an API call to delete posts
+  function deleteNote(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/members/" + id
+    })
+      .then(function() {
+        console.log("done");
+        location.reload()
+      });
+  }
+
+  
+
+
+    
 
 
 

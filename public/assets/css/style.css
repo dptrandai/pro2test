@@ -1,4 +1,64 @@
-form.signup,
-form.login {
-  margin-top: 50px;
+html, body {
+  color: white;
+  background-image: url(./cosmic-sky.jpg);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
 }
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  padding: 20px
+}
+
+.grid-container {
+  
+  grid-template-columns: 70px 1fr;
+  display: grid;
+  position: relative;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-areas: 'sidenav header' 'sidenav main' 'sidenav footer';
+  height: 100vh;
+}
+
+.card-buttons {
+
+}
+
+.column {
+
+}
+
+.header {
+  background-color: #27323A;
+  grid-area: header
+
+}
+
+.nbc {
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.sidenav {
+  background-color: #27323A;
+  grid-area: sidenav;
+
+}
+
+main {
+  background-color: #393E46;
+  grid-area: main;
+
+}
+
+.footer {
+  background-color: #280E3B;
+  grid-area: footer;
+} 
+
