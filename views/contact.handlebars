@@ -4,13 +4,13 @@
     </div>    
     <div class="d-flex justify-content-end" id="navbarSupportedContent">
       <div class="nav-item">
-        <a class="nav-link" href="../addNote">Add Note</a>
+        <a class="nav-link" href="../members">View Notes</a>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="portfolio.html">Contacts</a>
+        <a class="nav-link" href="../api/addcontact">Add Contacts</a>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="contact.html">Logout</a>
+        <a class="nav-link" href="/logout">Logout</a>
       </div>
     </div>
   </nav>
@@ -19,24 +19,24 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h1>Notes:</h1>
+        <h1>Contacts:</h1>
         <br>
         <br>
       </div>
     </div>
 
-    <!-- Note section -->
-    {{#each notes}}
+    <!-- Contact section -->
+    {{#each contacts}}
 
     <div class="card">
       <div class="card-header">
-        <h2>Title: {{"Notes.title"}}</h2>
+        <h2>Title: {{"Contacts.phoneNumber"}}</h2>
       </div>
     
   <div class="card-body">
-    <p>{{"Notes.body"}}</p>
-    <button value={{"Notes.id"}} class="delete btn btn-danger">Delete</button>
-    <button value={{"Notes.id"}} class="edit btn btn-default">Edit</button>
+    <p>{{"Contacts.body"}}</p>
+    <button value={{"Contacts.id"}} class="delete btn btn-danger">Delete</button>
+    <button value={{"Contacts.id"}} class="edit btn btn-default">Edit</button>
   </div></div>
 
   {{/each}}

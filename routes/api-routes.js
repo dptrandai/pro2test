@@ -111,12 +111,12 @@ app.put("/api/addNote", function(req, res) {
 
 
 
-  // app.get("/api/contact", function(req, res){
-  //   db.Contact.findAll().then(function(dbContact){
-  //     res.json(dbContact)
-  //     console.log(dbContact)
-  //   })
-  // });
+app.get("/api/contacts", function(req, res){
+  db.Contact.findAll().then(function(dbContact) {
+    res.json(dbContact)
+      console.log(dbContact)
+    })
+  });
 
     // DELETE route for deleting posts
     // app.delete("/api/notes/:id", function(req, res) {
