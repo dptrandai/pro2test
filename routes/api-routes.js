@@ -51,6 +51,66 @@ module.exports = function(app) {
       });
     }
   });
+
+
+  app.post("/api/addNote", function(req, res) {
+    console.log(req.user.id)
+    db.Notes.create({
+      title: req.body.title,
+      body: req.body.body,
+      UserId: req.user.id
+    })
+      .then(function(result) {
+        console.log(result);
+        res.redirect("/members")
+        
+
+      })
+      // .catch(function(err) {
+      //   res.status(401).json(err);
+      // });
+  });
+
+app.delete("/api/members/:id", function(req, res){
+  db.Notes.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(dbNotes){
+    res.json(dbNotes)
+    res.location.reload()
+    
+  })
+})
+
+  // Get route for retrieving a single post
+  app.get("/api/addNote/:id", function(req, res) {
+    db.Notes.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+
+app.put("/api/addNote", function(req, res) {
+  db.Notes.update(req.body,
+    {
+      where: {
+        id: req.body.id
+      }
+    })
+    .then(function(dbPost) {
+      res.json(dbPost);
+    });
+});
+
+
+
   // app.get("/api/contact", function(req, res){
   //   db.Contact.findAll().then(function(dbContact){
   //     res.json(dbContact)

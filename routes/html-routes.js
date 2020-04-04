@@ -29,22 +29,63 @@ module.exports = function(app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  
+  
   app.get("/members", isAuthenticated, function(req, res) {
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
-    db.Notes.findAll({raw:true}).then(function(dbNotes){
-      console.log(dbNotes)
-      var hbsObject = {
+
+    db.User.findAll({
+      where: {id: req.user.id},
+      include: [{model: db.Notes}],
+      raw: true,}).then(function(dbNotes){  
+      
+      // var notes = dbNotes.map(function(note){
+      //   return {
+      //     id: note["Notes.id"],
+      //     title: note["Notes.title"],
+      //     body: note["Notes.body"]
+      //   }
+      // })
+
+      let hbsObject = {
         notes: dbNotes
       }
-
-      // console.log(hbsObject)
-     
+      console.log(hbsObject)
       res.render("members", hbsObject)
-      
+
     })
-
-
-
-
   });
+
+  app.get("/addNote", isAuthenticated, function(req, res) {
+
+      var hbsObject = {}
+      res.render("addNote", hbsObject)
+
+    
+  });
+
+
+
+
+
+
+    
+  // app.get("/members", isAuthenticated, function(req,res){
+    
+  //   db.Notes.findAll({
+      
+  //     raw:true}).then(function(dbNotes){
+
+
+    
+  //     var hbsObject = {
+  //       notes: dbNotes
+  //     }
+
+  //     console.log(hbsObject)
+     
+  //     res.render("members", hbsObject)
+  //   })
+
+  // })  
+  
 };
