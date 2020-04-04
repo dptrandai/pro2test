@@ -38,6 +38,23 @@ module.exports = function(app) {
       include: [{model: db.Notes}],
       raw: true,}).then(function(dbNotes){  
       
+      console.log(dbNotes);
+      let hbsObject = {
+        notes: dbNotes
+      }
+    
+      res.render("members", hbsObject)
+
+    })
+  });
+
+  app.get("/contacts", isAuthenticated, function(req, res) {
+    console.log(db.Contacts);
+    db.User.findAll({
+      where: {id: req.user.id},
+      include: [{model: db.Contact}],
+      raw: true,}).then(function(dbContacts){  
+      
       // var notes = dbNotes.map(function(note){
       //   return {
       //     id: note["Notes.id"],
@@ -47,10 +64,10 @@ module.exports = function(app) {
       // })
 
       let hbsObject = {
-        notes: dbNotes
+        contacts: dbContacts
       }
       console.log(hbsObject)
-      res.render("members", hbsObject)
+      res.render("contact", hbsObject)
 
     })
   });
@@ -63,7 +80,7 @@ module.exports = function(app) {
     
   });
 
-
+  
 
 
 
