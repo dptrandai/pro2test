@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let newName = $("#name")
-    let newPhone = $("#phone")
+    let newPhoneNumber = $("#phoneNumber")
     let newEmail = $("#email")
     let newAddress = $("#address")
     var updating = false;
@@ -12,10 +12,9 @@ $(document).ready(function() {
         }
     $(".submit").on("click", function(event){
         event.preventDefault();
-        console.log("you just pushed me.")
         let newContact = {
             name: newName.val(),
-            phone: newPhone.val(),
+            phoneNumber: newPhoneNumber.val(),
             email: newEmail.val(),
             address: newAddress.val(),
         };
@@ -30,7 +29,7 @@ $(document).ready(function() {
         console.log(newContact)
         $.post("/api/addContact", {
             name: newContact.name,
-            phone: newContact.phone,
+            phoneNumber: newContact.phoneNumber,
             email: newContact.email,
             address: newContact.address,
         }).then(function(){
@@ -39,10 +38,11 @@ $(document).ready(function() {
     }
     function getContactData(id){
         $.get("/api/addContact/" + id, function(data){
+            console.log('this is data:')
             console.log(data)
             if (data) {
                 newName.val(data.name);
-                newPhone.val(data.phoneNumber);
+                newPhoneNumber.val(data.phoneNumber);
                 newEmail.val(data.email);
                 newAddress.val(data.address);
                 updating = true;
