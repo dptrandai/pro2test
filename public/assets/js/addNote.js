@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     let newTitle = $("#title")
     let newBody = $("#body")
     var updating = false;
@@ -18,17 +17,9 @@ $(document).ready(function() {
         if (updating) {
             newNote.id = noteId
             updateNote(newNote)
-
         }else{
             newNoteNow(newNote)
-
         }
-
-
-
-       
-
-        
     })
 
     function newNoteNow(newNote){
@@ -39,24 +30,18 @@ $(document).ready(function() {
         }).then(function(){
             window.location.replace("/members")
         })
-
-
     }
     
 
     function getNoteData(id){
         $.get("/api/addNote/" + id, function(data){
-            if (data) {
-                
-                
+            if (data) {      
                 newTitle.val(data.title);
                 newBody.val(data.body)
                 updating = true;
-
             }
         })
     }  
-
 
     function updateNote(newNote){
         $.ajax({
@@ -67,23 +52,8 @@ $(document).ready(function() {
             window.location.href = "/members"
         })
     }
-
-
-
-
-
-
-
-
-
-          
-
 })
   
   
-//  var newNote = {
-//               title: $("#title").val(),
-//               body: $("#body").val()
-//           } 
-  
+
   

@@ -2,7 +2,6 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -51,8 +50,7 @@ module.exports = function(app) {
       });
     }
   });
-
-
+// Note Routes:
   app.post("/api/addNote", function(req, res) {
     db.Notes.create({
       title: req.body.title,
@@ -67,29 +65,16 @@ module.exports = function(app) {
       // });
   });
 
-app.delete("/api/members/:id", function(req, res){
-  db.Notes.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(function(dbNotes){
-    res.json(dbNotes)
-    res.location.reload()
-    
-  })
-})
-
-  // route to delete a contact 
-  app.delete("/api/contact/:id", function(req, res){
-    db.Contact.destroy({
+  app.delete("/api/members/:id", function(req, res){
+    db.Notes.destroy({
       where: {
         id: req.params.id
       }
     })
-    .then(function(dbContacts){
-      res.json(dbContacts)
+    .then(function(dbNotes){
+      res.json(dbNotes)
       res.location.reload()
+      
     })
   })
 
@@ -105,6 +90,46 @@ app.delete("/api/members/:id", function(req, res){
       });
   });
 
+  app.put("/api/addNote", function(req, res) {
+    db.Notes.update(req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function(dbPost) {
+        console.log(dbPost)
+        res.json(dbPost);
+      });
+  });
+
+// Contact routes
+  app.post("/api/addContact", function(req, res) {
+    console.log(req.body.phone)
+    db.Contact.create({
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      address: req.body.address,
+      UserId: req.user.id,
+    })
+      .then(function(result) {
+        res.redirect("/contacts")
+      })
+  });
+
+  app.delete("/api/contact/:id", function(req, res){
+    db.Contact.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(dbContacts){
+      res.json(dbContacts)
+      res.location.reload()
+    })
+  })
+
   app.get("/api/addContact/:id", function(req, res) {
     db.Contact.findOne({
       where: {
@@ -116,65 +141,17 @@ app.delete("/api/members/:id", function(req, res){
       });
   });
 
-app.put("/api/addNote", function(req, res) {
-  db.Notes.update(req.body,
-    {
-      where: {
-        id: req.body.id
-      }
-    })
-    .then(function(dbPost) {
-      res.json(dbPost);
-    });
-});
-
-app.put("/api/addContact", function(req, res) {
-  db.Contact.update(req.body,
-    {
-      where: {
-        id: req.body.id
-      }
-    })
-    .then(function(dbPost) {
-      res.json(dbPost);
-    });
-});
-
-
-
-app.post("/api/addContact", function(req, res) {
-  console.log("req is here:")
+  app.put("/api/addContact", function(req, res) {
   
-
-  db.Contact.create({
-    name: req.body.name,
-    phoneNumber: req.body.phone,
-    email: req.body.email,
-    address: req.body.address,
-    UserId: req.user.id,
-  })
-    .then(function(result) {
-      // console.log(result);
-      res.redirect("/contacts")
-    })
-    // .catch(function(err) {
-    //   res.status(401).json(err);
-    // });
-});
-
-
-
-app.get("/api/contacts", function(req, res){
-  db.Contact.findAll().then(function(dbContact) {
-    res.json(dbContact)
-      console.log(dbContact)
-    })
+    db.Contact.update(req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function(dbPost) {
+        
+        res.json(dbPost);
+      });
   });
-
-
-
-
-
-
-
 };

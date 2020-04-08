@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  // Getting references to our form and input
-
-
   // When the signup button is clicked, we validate the email and password are not blank
   $(".createbutton").on("click", function(event) {
     event.preventDefault();
