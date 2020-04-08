@@ -1,15 +1,24 @@
 $(document).ready(function() {
+//   $('.message a').click(function(){
+//     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+//  });
+
   // Getting references to our form and inputs
-  var loginForm = $("form.login");
-  var emailInput = $("input#email-input");
-  var passwordInput = $("input#password-input");
+  // var loginForm = $("form.login");
+  var emailInput = $(".emailInput").value;
+  var passwordInput = $(".passwordInput").value;
 
   // When the form is submitted, we validate there's an email and password entered
-  loginForm.on("submit", function(event) {
+  $(".loginbutton").on("click", function(event) {
     event.preventDefault();
+    var emailInput = $("#emailInput").val();
+    var passwordInput = $("#passwordInput").val();
+    console.log(emailInput)
+
+
     var userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      email: emailInput.trim(),
+      password: passwordInput.trim()
     };
 
     if (!userData.email || !userData.password) {

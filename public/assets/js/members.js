@@ -4,27 +4,21 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.email);
   });
-  $.get("api/notes").then(function(data){
+  // $.get("api/notes").then(function(data){
    
-    $(".title").text(data[0].title)
-  })
-
-    $(".noteEdit").on("click", function(event){
-        console.log("button Works")
-    })
+  //   $(".title").text(data[0].title)
+  // })
 
 
-    $(".search-button").on("click", function(event){
+  // delete button
+    $(".delete-button").on("click", function(event){
       event.preventDefault();
       deleteNote(this.value)
       location.reload()
-
-      
-      
-      
     })
-// edit button
-    $(".btn-default").on("click", function(event){
+
+  // edit button
+    $(".edit-button").on("click", function(event){
       event.preventDefault();
       window.location.href= "/addNote?id=" + this.value
     })
@@ -41,14 +35,5 @@ $(document).ready(function() {
         location.reload()
       });
   }
-
-  
-
-
-    
-
-
-
-
 
 });

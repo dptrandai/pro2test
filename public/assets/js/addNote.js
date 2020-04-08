@@ -47,8 +47,8 @@ $(document).ready(function() {
     function getNoteData(id){
         $.get("/api/addNote/" + id, function(data){
             if (data) {
-                console.log("data:")
-                console.log(data)
+                
+                
                 newTitle.val(data.title);
                 newBody.val(data.body)
                 updating = true;

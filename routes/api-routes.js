@@ -54,17 +54,13 @@ module.exports = function(app) {
 
 
   app.post("/api/addNote", function(req, res) {
-    console.log(req.user.id)
     db.Notes.create({
       title: req.body.title,
       body: req.body.body,
       UserId: req.user.id
     })
       .then(function(result) {
-        console.log(result);
         res.redirect("/members")
-        
-
       })
       // .catch(function(err) {
       //   res.status(401).json(err);
@@ -84,6 +80,19 @@ app.delete("/api/members/:id", function(req, res){
   })
 })
 
+  // route to delete a contact 
+  app.delete("/api/contact/:id", function(req, res){
+    db.Contact.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(dbContacts){
+      res.json(dbContacts)
+      res.location.reload()
+    })
+  })
+
   // Get route for retrieving a single post
   app.get("/api/addNote/:id", function(req, res) {
     db.Notes.findOne({
@@ -96,6 +105,16 @@ app.delete("/api/members/:id", function(req, res){
       });
   });
 
+  app.get("/api/addContact/:id", function(req, res) {
+    db.Contact.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
 
 app.put("/api/addNote", function(req, res) {
   db.Notes.update(req.body,
@@ -109,6 +128,40 @@ app.put("/api/addNote", function(req, res) {
     });
 });
 
+app.put("/api/addContact", function(req, res) {
+  db.Contact.update(req.body,
+    {
+      where: {
+        id: req.body.id
+      }
+    })
+    .then(function(dbPost) {
+      res.json(dbPost);
+    });
+});
+
+
+
+app.post("/api/addContact", function(req, res) {
+  console.log("req is here:")
+  
+
+  db.Contact.create({
+    name: req.body.name,
+    phoneNumber: req.body.phone,
+    email: req.body.email,
+    address: req.body.address,
+    UserId: req.user.id,
+  })
+    .then(function(result) {
+      // console.log(result);
+      res.redirect("/contacts")
+    })
+    // .catch(function(err) {
+    //   res.status(401).json(err);
+    // });
+});
+
 
 
 app.get("/api/contacts", function(req, res){
@@ -118,30 +171,7 @@ app.get("/api/contacts", function(req, res){
     })
   });
 
-    // DELETE route for deleting posts
-    // app.delete("/api/notes/:id", function(req, res) {
-    //   db.Post.destroy({
-    //     where: {
-    //       id: req.params.id
-    //     }
-    //   })
-    //     .then(function(dbPost) {
-    //       res.json(dbPost);
-    //     });
-    // });
-    // PUT route for updating posts
-  //   app.put("/api/notes", function(req, res) {
-  //     db.Post.update(req.body,
-  //       {
-  //         where: {
-  //           id: req.body.id
-  //         }
-  //       })
-  //       .then(function(dbPost) {
-  //         res.json(dbPost);
-  //       });
-  //   });
-  // };
+
 
 
 

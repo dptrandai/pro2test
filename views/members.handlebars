@@ -1,93 +1,46 @@
 <div class = "grid-container">
   <header class="header">
       <nav >
-    <div class="nbc" >Tin Foil Vault</div>    
-    <div class="d-flex justify-content-end" id="navbarSupportedContent">
- 
-    </div>
-  </nav>
-
+        <div class="nbc" >Tin Foil Vault</div>    
+        <div class="d-flex justify-content-end" id="navbarSupportedContent"></div>
+      </nav>
   </header>
+
   <aside class="sidenav">
-
-         <div style="padding: 10px;" class="nav-item">
-        <a style="color: white"class="nav-link" href="/logout">Logout</a>
-      </div>
-      <div style="padding: 10px;"class="nav-item">
-        <a style="color: white"class="nav-link" href="../contacts">Contacts</a>
-      </div>
-      <div style="padding: 10px;"class="nav-item">
-        <a style="color: white"class="nav-link" href="../addNote">Add Note</a>
-      </div>
-
+    <div class="sidenav">
+      <br>
+      <br>
+      <a href="./addNote">Add Note</a>
+      <a href="./contacts">Contacts</a>
+      <a href="./logout">Logout</a>
+    </div>
   </aside>
+
   <main>
-        {{#each notes}}
-
-    <div style="padding: 10px;"class="card">
-      <div class="card-header">
-        
-        <h4>{{"Notes.title"}}</h4>
+    <div class="container-fluid">
+      <div class="mainnote-title">
+        <p style: "color: black;">Notes</p>
       </div>
-
-      <div class="card-buttons">
-        <div class="column">
-        <button style="padding: 10px;"value={{"Notes.id"}} type="submit" class="search-button"><i class="notesButton fa fa-trash" aria-hidden="true"></i></button>
-        </div>
-        <div class="column">
-
-        <button style="padding: 10px;"value={{"Notes.id"}} class="notesButton edit btn btn-default">Edit</button>
-      </div>
+      <hr>
+      <div class="container-fluid" style: "width: 70%; border: solid;">
+          {{#each notes}}
+        <div style="padding-left: 40px; width: 80%;">
+          <div class="note-title">{{"Notes.title"}}
+            <div class="pageButtons">
+            <button style="background-color: #907080; border-radius: 12px;"class="edit-button" type="submit" value={{"Notes.id"}}>Edit</button>
+            <button style="background-color: #907080; border-radius: 12px;"class="delete-button" type="submit" value={{"Notes.id"}}>Delete</button></div>   
+          </div>
+          <p class="note-textarea" >{{"Notes.body"}}</p>
+       </div> 
+       <hr>{{/each}} 
       </div>  
-      
-    
-  <div style="padding: 10px;"="card-body">
-    <p>{{"Notes.body"}}</p>
-    {{!-- <button value={{"Notes.id"}} type="submit" class="search-button"><i class="fa fa-trash" aria-hidden="true"></i></button>
-    <button value={{"Notes.id"}} class="edit btn btn-default">Edit</button> --}}
-  </div></div>
-  <hr>
-
-  {{/each}}
+    </div>
   </main>
+
   <footer class="footer"></footer>
-
-
 </div>
-
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/members.js"></script>
 
 
 
-{{!-- 
-
-
-<div class="header">
-  <h1>Header</h1>
-  <p>Resize the browser window to see the responsive effect.</p>
-</div>
-
-<div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
-
-<div class="row">
-  <div class="column">
-    <h2>Column</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-  </div>
-  
-  <div class="column">
-    <h2>Column</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-  </div>
-  
-  <div class="column">
-    <h2>Column</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque tortor sed accumsan convallis.</p>
-  </div>
-</div> --}}

@@ -49,12 +49,13 @@ module.exports = function(app) {
   });
 
   app.get("/contacts", isAuthenticated, function(req, res) {
-    console.log(db.Contacts);
+ 
     db.User.findAll({
       where: {id: req.user.id},
       include: [{model: db.Contact}],
       raw: true,}).then(function(dbContacts){  
-      
+      console.log("here is dbContacts:")
+      console.log()
       // var notes = dbNotes.map(function(note){
       //   return {
       //     id: note["Notes.id"],
@@ -80,29 +81,20 @@ module.exports = function(app) {
     
   });
 
+
+  app.get("/addContact", isAuthenticated, function(req, res) {
+
+    var hbsObject = {}
+    res.render("addContact", hbsObject)
+
+  
+});
+
   
 
 
 
 
-    
-  // app.get("/members", isAuthenticated, function(req,res){
-    
-  //   db.Notes.findAll({
-      
-  //     raw:true}).then(function(dbNotes){
-
-
-    
-  //     var hbsObject = {
-  //       notes: dbNotes
-  //     }
-
-  //     console.log(hbsObject)
-     
-  //     res.render("members", hbsObject)
-  //   })
-
-  // })  
+ 
   
 };

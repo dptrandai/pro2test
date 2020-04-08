@@ -1,88 +1,73 @@
+<div class = "grid-container">
+  <header class="header">
+      <nav >
+        <div class="nbc" >Tin Foil Vault</div>    
+        <div class="d-flex justify-content-end" id="navbarSupportedContent"></div>
+      </nav>
+  </header>
 
-  <nav class="navbar navbar-expand-sm-md-lg">
-    <div class="navbar-brand">The Vault - You are logged in as: <span class="member-name"></span>
-    </div>    
-    <div class="d-flex justify-content-end" id="navbarSupportedContent">
-      <div class="nav-item">
-        <a class="nav-link" href="../members">View Notes</a>
+  <aside class="sidenav">
+    <div class="sidenav">
+      <br>
+      <br>
+      <a href="./addContact">Add Contact</a>
+      <a href="./members">Notes</a>
+      <a href="./logout">Logout</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container-fluid">
+      <div class="mainnote-title">
+        <p style: "color: black;">Contacts</p>
       </div>
-      <div class="nav-item">
-        <a class="nav-link" href="../api/addcontact">Add Contacts</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+      <hr>
+      <div class="container-fluid" style: "width: 70%; border: solid;">
+          {{#each contacts}}
+        <div style="padding-left: 40px; width: 80%;">
+        <div class="note-title">Name: {{"Contacts.name"}}
+            <div class="pageButtons">
+            <button class="edit-button" style="background-color: #907080; border-radius: 12px;"type="submit" value={{"Contacts.id"}}>Edit</button>
+            <button class="delete-button" style="background-color: #907080; border-radius: 12px;"type="submit" value={{"Contacts.id"}}>Delete</button></div>   
+          </div>
+
+        <div style="padding-left: 40px; width: 80%;">
+          <p style:"padding: 20px;" class="note-textarea">Phone Number: {{"Contacts.phoneNumber"}}</p> 
+          <p style:"padding: 20px;" class="note-textarea">Email: {{"Contacts.email"}}</p>
+          <p style:"padding: 20px;" class="note-textarea">Address: {{"Contacts.address"}}</p>
+          
+        </div></div>
+        <hr>{{/each}}
       </div>
     </div>
-  </nav>
-  <div class="container">
-
-
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h1>Contacts:</h1>
-        <br>
-        <br>
-      </div>
-    </div>
-
-    <!-- Contact section -->
-    {{#each contacts}}
-
-    <div class="card">
-      <div class="card-header">
-        <h2>Title: {{"Contacts.phoneNumber"}}</h2>
-      </div>
     
-  <div class="card-body">
-    <p>{{"Contacts.body"}}</p>
-    <button value={{"Contacts.id"}} class="delete btn btn-danger">Delete</button>
-    <button value={{"Contacts.id"}} class="edit btn btn-default">Edit</button>
-  </div></div>
+  </main>
 
-  {{/each}}
-
-
-
-
-
-
-    {{!-- <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        
-        <div>
-        {{#each notes}}
-
-        
-
-        <li>
-	        {{"Notes.title"}}-{{"Notes.body"}}
-	        <button class="noteEdit" data-id="{{id}}" >
-		      Edit
-	        </button>   
-	        <button class="delete-cat" data-id="{{this.id}}">DELETE!</button>
-          </li>
-        
-
-
-        {{/each}}
-
+  <footer class="footer"></footer>
+</div>
+        {{!-- <p class="note-title">Name: {{"Contacts.name"}}</p>
+        <div style:"padding: 20px;" class"note-textarea">
+        <p style:"padding: 20px;" class="note-textarea">Phone Number: {{"Contacts.phoneNumber"}}</p> 
+        <p style:"padding: 20px;" class="note-textarea">Email: {{"Contacts.email"}}</p>
+        <p style:"padding: 20px;" class="note-textarea">Address: {{"Contacts.address"}}</p>
         </div>
-        
-      </div>
-    </div> --}}
-
-
-<!-- Contact Section -->
-
-
-
-
-<!-- url section -->
-
-
+       </div> 
+       <hr>
+      {{/each}} </div>
     
-  </div>
+  </div> --}} 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./assets/js/members.js"></script>
+  <script type="text/javascript" src="./assets/js/contact.js"></script>
 
+
+
+          {{!-- <div class="note-title">{{"Notes.title"}}
+            <button class="edit-button" type="submit" value={{"Notes.id"}}>Edit</button>
+            <button class="delete-button" type="submit" value={{"Notes.id"}}>Delete</button>   
+          </div>
+          <p class="note-textarea" >{{"Notes.body"}}</p>
+       </div> 
+       <hr>{{/each}} 
+      </div>  
+    </div> --}}

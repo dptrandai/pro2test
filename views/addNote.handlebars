@@ -1,42 +1,42 @@
-  <nav class="navbar navbar-expand-sm-md-lg">
-    <div class="navbar-brand">The Vault - You are logged in as: <span class="member-name"></span>
-    </div>    
-    <div class="d-flex justify-content-end" id="navbarSupportedContent">
-      <div class="nav-item">
-        <a class="nav-link" href="../members">View Notes</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="portfolio.html">Contacts</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="contact.html">Logout</a>
-      </div>
+<div class = "grid-container">
+  <header class="header">
+      <nav>
+        <div class="nbc" >Tin Foil Vault</div>    
+        <div class="d-flex justify-content-end" id="navbarSupportedContent"></div>
+      </nav>
+  </header>
+
+
+  <aside class="sidenav">
+    <div class="sidenav">
+      <br>
+      <br>
+      <a href="./members">Notes</a>
+      <a href="./contacts">Contacts</a>
+      <a href="./logout">Logout</a>
     </div>
-  </nav>
+  </aside>
 
-
-
-  <div class="container">
-    <div class="row">
-      <div class="row">
-
+  <main>
+    <div class="login-page">
+      <div class="form" style="padding: 1%;">
+        {{!-- <form class="login-form"> --}}
+        <input class="form-control" id="title" type="text" placeholder="Title" style="padding: 1%;">        
+        <textarea class="form-control" id="body" placeholder="Write something.." style="width: 98%;"></textarea>
+        <br>
+        <button type="submit" class="submit createbutton">Save</button>
       </div>
-      <div class="col-md-5 offset-md-3">
-        <form id="cms">
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title">
-            <br />
-            <label for="body">Body:</label>
-            <textarea class="form-control" rows="10" id="body"></textarea>
+    </div>   
+  </main>
 
-            <br />
-            <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  <footer class="footer"></footer>
+
+</div>
+
+
+
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/addNote.js"></script>
